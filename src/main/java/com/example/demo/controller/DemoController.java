@@ -1,12 +1,9 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.example.demo.model.domain.TestDB;
 import com.example.demo.model.service.TestService;
 
@@ -15,7 +12,7 @@ public class DemoController {
     @Autowired
     TestService testService;
 
-    public DemoController(TestService testService) {
+    public DemoController(TestService testServic) {
         this.testService = testService;
     }
 
@@ -58,12 +55,13 @@ public class DemoController {
 
     @GetMapping("/testdb")
     public String getAllTestDBs(Model model) {
-        TestDB test2 = testService.findByName("홍길동");
-        //model.addAttribute("data3", test1.toString());
-        model.addAttribute("data4", test2);
-        model.addAttribute("data5", "테스트");
-        //System.out.println("데이터 출력 디버그 : " + test1);
-        System.out.println("데이터 출력 디버그 : " + test2);
+        TestDB test = testService.findByName("홍길동");
+        TestDB test2 = testService.findByName("아저씨");
+        TestDB test3 = testService.findByName("꾸러기");
+        model.addAttribute("data4", test);
+        model.addAttribute("data5", test2);
+        model.addAttribute("data6", test3);
+        System.out.println("데이터 출력 디버그 : " + test);
         return "testdb";
     }
 }
