@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.service.BlogService;
@@ -21,12 +20,12 @@ public class BlogRestController {
     // PUT /api/articles/{id}: 특정 게시글 수정
     // DELETE /api/articles/{id}: 특정 게시글 삭제
 
-    @PostMapping("/api/articles")
-    public ResponseEntity<Article> addArticle(@ModelAttribute AddArticleRequest request) {
-        Article saveArticle = blogService.save(request);
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(saveArticle);
-    }
+    // @PostMapping("/api/articles")
+    // public ResponseEntity<Article> addArticle(@ModelAttribute AddArticleRequest request) {
+    //     Article saveArticle = blogService.save(request);
+    //     return ResponseEntity.status(HttpStatus.CREATED)
+    //         .body(saveArticle);
+    // }
 
     // @GetMapping("/{id}")
     // public ResponseEntity<Article> getArticle(@PathVariable Long id) {
