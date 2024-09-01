@@ -18,7 +18,7 @@ public class BlogService {
         return blogRepository.findAll();
     }
 
-    public Optional<Article> findById(Long id) {
+    public Optional<Article> findById(Long id) { // 게시판 특정 글 조회
         return blogRepository.findById(id);
     }
 
@@ -32,12 +32,16 @@ public class BlogService {
         return blogRepository.save(request.toEntity());
     }
 
-    public Article update(Long id, AddArticleRequest request) {
-        return blogRepository.findById(id)
-            .map(article -> {
-                article.update(request.getTitle(), request.getContent());
-                return blogRepository.save(article);
-            })
-            .orElseThrow(() -> new IllegalArgumentException("해당 글이 없습니다. id=" + id));
+    public void update(Long id, AddArticleRequest request) {
+        Optional<Article> optionalArticle = blogRepository.findById(id);
+        optionalArticle.ifPresent(article -> {
+            article.update(request.getTitle(), request.getContent());
+            blogRepository.save(article);
+        });
+    }
+
+
+    public void delete(Long id) {
+        blogRepository.deleteById(id);
     }
 }
