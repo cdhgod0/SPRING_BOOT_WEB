@@ -15,21 +15,21 @@ public class AddArticleRequest {
     private String count;
     private String likec;
 
+    public Board toEntity(){ // Board 생성자를 통해 객체 생성
+        return Board.builder()
+            .title(title)
+            .content(content)
+            .user(user)
+            .newdate(newdate)
+            .count(count)
+            .likec(likec)
+            .build();
+    }
+
     // public Article toEntity(){ // Article 생성자를 통해 객체 생성
     //     return Article.builder()
     //         .title(title)
     //         .content(content)
     //         .build();
     // }
-
-    public Board toEntity(){ // Article 생성자를 통해 객체 생성
-        return Board.builder()
-            .title(title)
-            .content(content)
-            .user(user)
-            .user(newdate)
-            .count(count)
-            .likec(likec)
-            .build();
-    }
 }
